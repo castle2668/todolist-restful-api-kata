@@ -1,6 +1,6 @@
 # Todolist RESTful API Kata
 
-以 Node.js **原生 `http` 模組**實作的待辦事項 RESTful API 練習（hexschool kata），未使用任何 web framework。資料存於記憶體陣列，重啟後即清空。
+以 Node.js **原生 `http` 模組**實作的待辦事項 RESTful API 練習，未使用任何 web framework。資料存於記憶體陣列，重啟後即清空。
 
 ## 環境需求
 
@@ -20,13 +20,13 @@ npm start      # 直接以 node 啟動
 
 所有回應皆為 JSON，並已開啟 CORS。
 
-| Method   | Path          | 說明           | Request Body        |
-| -------- | ------------- | -------------- | ------------------- |
-| `GET`    | `/todos`      | 取得所有待辦   | —                   |
-| `POST`   | `/todos`      | 新增單筆待辦   | `{ "title": "字串" }` |
-| `PATCH`  | `/todos/:id`  | 編輯單筆待辦   | `{ "title": "字串" }` |
-| `DELETE` | `/todos/:id`  | 刪除單筆待辦   | —                   |
-| `DELETE` | `/todos`      | 清空所有待辦   | —                   |
+| Method   | Path         | 說明         | Request Body          |
+| -------- | ------------ | ------------ | --------------------- |
+| `GET`    | `/todos`     | 取得所有待辦 | —                     |
+| `POST`   | `/todos`     | 新增單筆待辦 | `{ "title": "字串" }` |
+| `PATCH`  | `/todos/:id` | 編輯單筆待辦 | `{ "title": "字串" }` |
+| `DELETE` | `/todos/:id` | 刪除單筆待辦 | —                     |
+| `DELETE` | `/todos`     | 清空所有待辦 | —                     |
 
 ### 回應格式
 

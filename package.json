@@ -1,7 +1,7 @@
 {
   "name": "todolist-restful-api-kata",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "以 Node.js 原生 http 模組實作的待辦事項 RESTful API 練習，未使用 web framework。",
   "devDependencies": {
     "nodemon": "^3.1.14"
   },
