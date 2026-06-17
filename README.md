@@ -2,6 +2,10 @@
 
 以 Node.js **原生 `http` 模組**實作的待辦事項 RESTful API 練習，未使用任何 web framework。資料存於記憶體陣列，重啟後即清空。
 
+## 線上 API
+
+部署於 Render：`https://todolist-restful-api-kata-ybrr.onrender.com`
+
 ## 環境需求
 
 - Node.js `>=20`
@@ -59,9 +63,10 @@ curl http://localhost:3005/todos
 
 ## Postman
 
-`postman/Todolist-RESTful-API.postman_collection.json` 提供完整的 API 請求集合。
+`postman/` 內含兩份 Postman Collection（v2.1），於 Postman 點 **Import** 選擇檔案即可使用：
 
-1. 於 Postman 點 **Import**，選擇上述檔案。
-2. 集合變數 `baseUrl` 預設為 `http://localhost:3005`，可視情況調整。
-3. 執行「新增單筆待辦」後，新建的 `id` 會自動寫入變數 `todoId`，供「編輯」「刪除單筆待辦」直接使用。
+- `Todolist RESTful API kata - 本地端.postman_collection.json`：對應本機 `http://localhost:3005`。
+- `Todolist RESTful API kata - Render.postman_collection.json`：對應部署於 Render 的線上服務。
+
+「編輯單筆待辦」「刪除單筆待辦」網址中帶的是範例 `id`，請先用「取得所有待辦」或「新增單筆待辦」取得實際 `id` 後替換。
 
