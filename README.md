@@ -65,8 +65,8 @@ curl http://localhost:3005/todos
 
 `postman/` 內含兩份 Postman Collection（v2.1），於 Postman 點 **Import** 選擇檔案即可使用：
 
-- `Todolist RESTful API kata - 本地端.postman_collection.json`：對應本機 `http://localhost:3005`。
-- `Todolist RESTful API kata - Render.postman_collection.json`：對應部署於 Render 的線上服務。
+- `todolist-api.local.postman_collection.json`：對應本機 `http://localhost:3005`。
+- `todolist-api.render.postman_collection.json`：對應部署於 Render 的線上服務。
 
 「編輯單筆待辦」「刪除單筆待辦」網址中帶的是範例 `id`，請先用「取得所有待辦」或「新增單筆待辦」取得實際 `id` 後替換。
 
