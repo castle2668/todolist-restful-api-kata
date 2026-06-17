@@ -56,3 +56,12 @@ curl -X POST http://localhost:3005/todos \
 # 取得全部
 curl http://localhost:3005/todos
 ```
+
+## Postman
+
+`postman/Todolist-RESTful-API.postman_collection.json` 提供完整的 API 請求集合。
+
+1. 於 Postman 點 **Import**，選擇上述檔案。
+2. 集合變數 `baseUrl` 預設為 `http://localhost:3005`，可視情況調整。
+3. 執行「新增單筆待辦」後，新建的 `id` 會自動寫入變數 `todoId`，供「編輯」「刪除單筆待辦」直接使用。
+

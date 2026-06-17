@@ -1,0 +1,134 @@
+{
+  "info": {
+    "name": "Todolist RESTful API",
+    "description": "以 Node.js 原生 http 模組實作的待辦事項 RESTful API。\n\n使用方式：\n1. 先啟動服務（npm run dev），預設 http://localhost:3005。\n2. 執行「新增單筆待辦」後，回應中最後一筆的 id 會自動存入集合變數 todoId，供「編輯」「刪除單筆」使用。\n3. baseUrl 可在集合變數調整。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "取得所有待辦",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/todos",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos"]
+        },
+        "description": "取得目前所有待辦事項。"
+      },
+      "response": []
+    },
+    {
+      "name": "新增單筆待辦",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const res = pm.response.json();",
+              "if (res.data && res.data.length) {",
+              "  pm.collectionVariables.set('todoId', res.data[res.data.length - 1].id);",
+              "  console.log('todoId set to', pm.collectionVariables.get('todoId'));",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"買牛奶\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/todos",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos"]
+        },
+        "description": "新增一筆待辦，body 需帶 title。回應的最後一筆 id 會自動存入 todoId 變數。"
+      },
+      "response": []
+    },
+    {
+      "name": "編輯單筆待辦",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"買牛奶與雞蛋\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/todos/{{todoId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos", "{{todoId}}"]
+        },
+        "description": "依 id 更新單筆待辦的 title。id 取自集合變數 todoId。"
+      },
+      "response": []
+    },
+    {
+      "name": "刪除單筆待辦",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/todos/{{todoId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos", "{{todoId}}"]
+        },
+        "description": "依 id 刪除單筆待辦。id 取自集合變數 todoId。"
+      },
+      "response": []
+    },
+    {
+      "name": "清空所有待辦",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/todos",
+          "host": ["{{baseUrl}}"],
+          "path": ["todos"]
+        },
+        "description": "清空所有待辦事項。"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3005",
+      "type": "string"
+    },
+    {
+      "key": "todoId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
