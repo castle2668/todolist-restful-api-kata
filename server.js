@@ -1,18 +1,11 @@
 const http = require("http");
 const { v4: uuidv4 } = require("uuid");
+const headers = require("./headers");
 const errorHandle = require("./errorHandle");
 
 const todos = [];
 
 const server = http.createServer((req, res) => {
-  const headers = {
-    "Access-Control-Allow-Headers":
-      "Content-Type, Authorization, Content-Length, X-Requested-With",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Content-Type": "application/json",
-  };
-
   let body = "";
   req.on("data", (chunk) => {
     body += chunk.toString();
@@ -29,7 +22,7 @@ const server = http.createServer((req, res) => {
     req.on("end", () => {
       try {
         const title = JSON.parse(body).title;
-        if (title !== undefined) {
+        if (typeof title === "string" && title.trim() !== "") {
           const newTodo = { id: uuidv4(), title };
           todos.push(newTodo);
           res.writeHead(200, headers);
@@ -70,7 +63,7 @@ const server = http.createServer((req, res) => {
         const title = JSON.parse(body).title;
         const id = req.url.split("/").pop();
         const index = todos.findIndex((todo) => todo.id === id);
-        if (title !== undefined && index !== -1) {
+        if (typeof title === "string" && title.trim() !== "" && index !== -1) {
           todos[index].title = title; // 更新標題
           res.writeHead(200, headers);
           res.write(JSON.stringify({ status: "success", data: todos }));
